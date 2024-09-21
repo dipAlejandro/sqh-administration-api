@@ -182,6 +182,7 @@ public class AlumnoService implements IConverter<Alumno, AlumnoDTO, AlumnoRespon
         var response = new AlumnoResponseDTO();
 
         var nombreDistrito = dRepository.getName(alumno.getDistrito().getDistritoId());
+        response.setAlumnoId(alumno.getAlumnoId());
         response.setNombres(alumno.getNombres());
         response.setApellidos(alumno.getApellidos());
         response.setFechaNacimiento(alumno.getFechaNacimiento());

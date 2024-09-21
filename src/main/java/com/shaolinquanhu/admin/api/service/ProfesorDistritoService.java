@@ -183,8 +183,10 @@ public class ProfesorDistritoService implements IConverter<ProfesorDistrito, Pro
     @Override
     public ProfesorDistritoResponseDTO toResponseDTO(ProfesorDistrito entity) {
         var response = new ProfesorDistritoResponseDTO();
+        response.setDistritoId(entity.getDistrito().getDistritoId());
+        response.setProfesorId(entity.getProfesor().getProfesorId());
         response.setNombreDistrito(dRepository.getName(entity.getDistrito().getDistritoId()));
-        response.setNombreProfesor(aRepository.getName(entity.getProfesor().getAlumno().getAlumnoId()));
+        response.setNombreProfesor(aRepository.getFullName(entity.getProfesor().getAlumno().getAlumnoId()));
         return response;
     }
 }

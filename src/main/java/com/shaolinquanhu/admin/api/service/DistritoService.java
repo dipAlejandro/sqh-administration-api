@@ -149,8 +149,6 @@ public class DistritoService implements IConverter<Distrito, DistritoDTO, Distri
 
         distrito.setNombre(dto.getNombre());
         distrito.setDireccion(dto.getDireccion());
-        distrito.setCreacion(dto.getCreacion());
-
         return distrito;
     }
 

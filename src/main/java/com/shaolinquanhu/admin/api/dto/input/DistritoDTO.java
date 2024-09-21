@@ -15,10 +15,9 @@ public class DistritoDTO {
     public DistritoDTO() {
     }
 
-    public DistritoDTO(String nombre, String direccion, LocalDateTime creacion) {
+    public DistritoDTO(String nombre, String direccion) {
         this.nombre = nombre;
         this.direccion = direccion;
-        this.creacion = creacion;
     }
 
     public String getNombre() {
@@ -37,17 +36,9 @@ public class DistritoDTO {
         this.direccion = direccion;
     }
 
-    public LocalDateTime getCreacion() {
-        return creacion;
-    }
-
-    public void setCreacion(LocalDateTime creacion) {
-        this.creacion = creacion;
-    }
-
     @Override
     public String toString() {
-        return "DistritoDTO{ nombre=" + nombre + ", direccion=" + direccion + ", creacion=" + creacion + '}';
+        return "DistritoDTO{ nombre=" + nombre + ", direccion=" + direccion + "}";
     }
 
 }

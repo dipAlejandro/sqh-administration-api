@@ -140,6 +140,8 @@ public class UsuarioService implements IConverter<Usuario, UsuarioDTO, UsuarioRe
         response.setUsuarioId(entity.getUsuarioId());
         response.setNombreUsuario(entity.getNombreUsuario());
         response.setNombreProfesor(uRepository.getNombreProfesor(entity.getProfesor().getProfesorId()));
+        response.setEmail(entity.getEmail());
+        response.setRol(entity.getRol());
         response.setCreacion(entity.getCreacion());
         return response;
     }

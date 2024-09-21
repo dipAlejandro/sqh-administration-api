@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IAlumnoRepository extends JpaRepository<Alumno, Integer> {
 
-    @Query("SELECT a.nombres FROM Alumno a WHERE a.alumnoId = :alumnoId")
-    public String getName(@Param("alumnoId") Integer alumnoId);
+    @Query("SELECT CONCAT(a.nombres, ' ', a.apellidos) FROM Alumno a WHERE a.alumnoId = :alumnoId")
+    public String getFullName(@Param("alumnoId") Integer alumnoId);
 
 }

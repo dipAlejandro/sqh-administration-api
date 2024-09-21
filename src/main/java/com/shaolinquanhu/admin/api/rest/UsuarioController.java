@@ -55,7 +55,7 @@ public class UsuarioController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioResponseDTO> updateUsuario(@PathVariable Integer id, @RequestBody UsuarioDTO usuario) {
-        var updatedUsuario = service.save(usuario);
+        var updatedUsuario = service.update(id, usuario);
         return ResponseEntity.ok(updatedUsuario);
     }
 

@@ -164,7 +164,7 @@ public class ProfesorService implements IConverter<Profesor, ProfesorDTO, Profes
     public ProfesorResponseDTO toResponseDTO(Profesor entity) {
         validator.validateNotNull(entity, "Profesor no puede ser null.");
         var response = new ProfesorResponseDTO();
-        response.setNombreProfesor(aRepository.getName(entity.getAlumno().getAlumnoId()));
+        response.setNombreCompletoProfesor(aRepository.getFullName(entity.getAlumno().getAlumnoId()));
         response.setProfesorId(entity.getProfesorId());
         return response;
     }

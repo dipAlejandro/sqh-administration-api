@@ -12,19 +12,17 @@ public class UsuarioResponseDTO {
     private String nombreProfesor;
     private String nombreUsuario;
     private String email;
-    private String contrasenia;
     private String rol = "USER";
     private LocalDateTime creacion;
 
     public UsuarioResponseDTO() {
     }
 
-    public UsuarioResponseDTO(Integer usuarioId, String nombreProfesor, String nombreUsuario, String email, String contrasenia, LocalDateTime creacion) {
+    public UsuarioResponseDTO(Integer usuarioId, String nombreProfesor, String nombreUsuario, String email, LocalDateTime creacion) {
         this.usuarioId = usuarioId;
         this.nombreProfesor = nombreProfesor;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
-        this.contrasenia = contrasenia;
         this.creacion = creacion;
     }
 
@@ -60,14 +58,6 @@ public class UsuarioResponseDTO {
         this.email = email;
     }
 
-    public String getContrasenia() {
-        return contrasenia;
-    }
-
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
-
     public String getRol() {
         return rol;
     }
@@ -86,7 +76,7 @@ public class UsuarioResponseDTO {
 
     @Override
     public String toString() {
-        return "UsuarioCreateDTO{" + "usuarioId=" + usuarioId + ", nombreProfesor=" + nombreProfesor + ", nombreUsuario=" + nombreUsuario + ", email=" + email + ", contrasenia=" + contrasenia + ", rol=" + rol + ", creacion=" + creacion + '}';
+        return "UsuarioResponseDTO{ usuarioId=" + usuarioId + ", nombreProfesor=" + nombreProfesor + ", nombreUsuario=" + nombreUsuario + ", email=" + email + ", rol=" + rol + ", creacion=" + creacion + '}';
     }
 
 }

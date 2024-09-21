@@ -13,17 +13,15 @@ public class UsuarioDTO {
     private String email;
     private String contrasenia;
     private String rol = "USER";
-    private LocalDateTime creacion;
 
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(Integer profesorId, String nombreUsuario, String email, String contrasenia, LocalDateTime creacion) {
+    public UsuarioDTO(Integer profesorId, String nombreUsuario, String email, String contrasenia) {
         this.profesorId = profesorId;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.contrasenia = contrasenia;
-        this.creacion = creacion;
     }
 
     public Integer getProfesorId() {
@@ -66,17 +64,9 @@ public class UsuarioDTO {
         this.rol = rol;
     }
 
-    public LocalDateTime getCreacion() {
-        return creacion;
-    }
-
-    public void setCreacion(LocalDateTime creacion) {
-        this.creacion = creacion;
-    }
-
     @Override
     public String toString() {
-        return "UsuarioCreateDTO{ profesorId=" + profesorId + ", nombreUsuario=" + nombreUsuario + ", email=" + email + ", contrasenia=" + contrasenia + ", rol=" + rol + ", creacion=" + creacion + '}';
+        return "UsuarioCreateDTO{ profesorId=" + profesorId + ", nombreUsuario=" + nombreUsuario + ", email=" + email + ", contrasenia=" + contrasenia + ", rol=" + rol + '}';
     }
 
 }

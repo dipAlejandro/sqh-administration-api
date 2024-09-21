@@ -9,6 +9,7 @@ import java.time.LocalDate;
  */
 public class AlumnoResponseDTO {
 
+    private Integer alumnoId;
     private String nombres;
     private String apellidos;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
@@ -23,7 +24,8 @@ public class AlumnoResponseDTO {
     public AlumnoResponseDTO() {
     }
 
-    public AlumnoResponseDTO(String nombres, String apellidos, LocalDate fechaNacimiento, String dni, String telefono, String direccion, String categoria, String comentarios, String nombreDistrito) {
+    public AlumnoResponseDTO(Integer alumnoId, String nombres, String apellidos, LocalDate fechaNacimiento, String dni, String telefono, String direccion, String categoria, String comentarios, String nombreDistrito) {
+        this.alumnoId = alumnoId;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.fechaNacimiento = fechaNacimiento;
@@ -33,6 +35,14 @@ public class AlumnoResponseDTO {
         this.categoria = categoria;
         this.comentarios = comentarios;
         this.nombreDistrito = nombreDistrito;
+    }
+
+    public Integer getAlumnoId() {
+        return alumnoId;
+    }
+
+    public void setAlumnoId(Integer alumnoId) {
+        this.alumnoId = alumnoId;
     }
 
     public String getNombres() {
@@ -109,7 +119,7 @@ public class AlumnoResponseDTO {
 
     @Override
     public String toString() {
-        return "AlumnoCreateDTO{" + "nombres=" + nombres + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + ", dni=" + dni + ", telefono=" + telefono + ", direccion=" + direccion + ", nombreDistrito=" + nombreDistrito + '}';
+        return "AlumnoCreateDTO{ alumnoId=" + alumnoId + "nombres=" + nombres + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + ", dni=" + dni + ", telefono=" + telefono + ", direccion=" + direccion + ", nombreDistrito=" + nombreDistrito + '}';
     }
 
 }

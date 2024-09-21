@@ -7,14 +7,14 @@ package com.shaolinquanhu.admin.api.dto.response;
 public class ProfesorResponseDTO {
 
     private Integer profesorId;
-    private String nombreProfesor;
+    private String nombreCompletoProfesor;
 
     public ProfesorResponseDTO() {
     }
 
-    public ProfesorResponseDTO(Integer profesorId, String nombreProfesor) {
+    public ProfesorResponseDTO(Integer profesorId, String nombreCompletoProfesor) {
         this.profesorId = profesorId;
-        this.nombreProfesor = this.nombreProfesor;
+        this.nombreCompletoProfesor = nombreCompletoProfesor;
     }
 
     public Integer getProfesorId() {
@@ -25,17 +25,17 @@ public class ProfesorResponseDTO {
         this.profesorId = profesorId;
     }
 
-    public String getNombreProfesor() {
-        return nombreProfesor;
+    public String getNombreCompletoProfesor() {
+        return nombreCompletoProfesor;
     }
 
-    public void setNombreProfesor(String nombreProfesor) {
-        this.nombreProfesor = nombreProfesor;
+    public void setNombreCompletoProfesor(String nombreCompletoProfesor) {
+        this.nombreCompletoProfesor = nombreCompletoProfesor;
     }
 
     @Override
     public String toString() {
-        return "ProfesorResponseDTO{" + "profesorId=" + profesorId + ", nombreProfesor=" + nombreProfesor + '}';
+        return "ProfesorResponseDTO{" + "profesorId=" + profesorId + ", nombreCompletoProfesor=" + nombreCompletoProfesor + '}';
     }
 
 }
