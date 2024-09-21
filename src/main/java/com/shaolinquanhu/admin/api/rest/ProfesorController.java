@@ -1,8 +1,10 @@
 package com.shaolinquanhu.admin.api.rest;
 
-import com.shaolinquanhu.admin.api.entity.Profesor;
+import com.shaolinquanhu.admin.api.dto.input.ProfesorDTO;
+import com.shaolinquanhu.admin.api.dto.response.ProfesorResponseDTO;
 import com.shaolinquanhu.admin.api.service.ProfesorService;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,29 +28,34 @@ public class ProfesorController {
 
     private final ProfesorService profesorService;
 
+    @Autowired
     public ProfesorController(ProfesorService profesorService) {
         this.profesorService = profesorService;
     }
 
     @GetMapping
-    public ResponseEntity<List<Profesor>> getAllProfesores(@RequestParam(required = false, defaultValue = "asc") String sort) {
+    public ResponseEntity<List<ProfesorResponseDTO>> getAllProfesores(@RequestParam(required = false, defaultValue = "asc") String sort) {
         Sort.Direction direction = sort.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
         var profesores = profesorService.findAllSort(Sort.by(direction, "profesorId"));
         return ResponseEntity.ok(profesores);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ProfesorResponseDTO> getProfesor(@PathVariable("id") Integer profesorId) {
+        var profesor = profesorService.findById(profesorId);
+        return ResponseEntity.ok(profesor);
+    }
+
     @PostMapping
-    public ResponseEntity<Profesor> createUsuario(@RequestBody Profesor profesor) {
-        var createdProfesor = profesorService.save(profesor);
+    public ResponseEntity<ProfesorResponseDTO> createProfesor(@RequestBody ProfesorDTO dto) {
+        var createdProfesor = profesorService.save(dto);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProfesor);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Profesor> updateProfesor(@PathVariable Integer id, @RequestBody Profesor profesor) {
-        if (!id.equals(profesor.getProfesorId())) {
-            return ResponseEntity.badRequest().build();
-        }
-        var updatedProfesor = profesorService.save(profesor);
+    public ResponseEntity<ProfesorResponseDTO> updateProfesor(@PathVariable Integer id, @RequestBody ProfesorDTO profesorDTO) {
+        var updatedProfesor = profesorService.update(id, profesorDTO);
         return ResponseEntity.ok(updatedProfesor);
     }
 

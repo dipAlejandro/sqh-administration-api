@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
  * @author Usuario
  */
 @Repository
-public interface IProfesorRepository extends JpaRepository<Profesor, Integer>{
-    
+public interface IProfesorRepository extends JpaRepository<Profesor, Integer> {
+
 }

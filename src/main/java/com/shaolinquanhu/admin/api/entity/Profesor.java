@@ -16,7 +16,7 @@ public class Profesor {
     @Column(name = "profesor_id", nullable = false)
     private Integer profesorId;
     @OneToOne
-    @JoinColumn(name = "fk_alumno", nullable = true)
+    @JoinColumn(name = "fk_alumno", nullable = false)
     private Alumno alumno;
     @Column
     private LocalDateTime creacion;
@@ -52,6 +52,11 @@ public class Profesor {
 
     public void setCreacion(LocalDateTime creacion) {
         this.creacion = creacion;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        this.creacion = LocalDateTime.now();
     }
 
     @Override

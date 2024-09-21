@@ -1,6 +1,7 @@
 package com.shaolinquanhu.admin.api.rest;
 
-import com.shaolinquanhu.admin.api.entity.Distrito;
+import com.shaolinquanhu.admin.api.dto.input.DistritoDTO;
+import com.shaolinquanhu.admin.api.dto.response.DistritoResponseDTO;
 import com.shaolinquanhu.admin.api.service.DistritoService;
 import java.util.List;
 import org.springframework.data.domain.Sort;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author Usuario
+ * @author Dahl
  */
 @RestController
 @RequestMapping("/api/v1/distritos")
@@ -31,25 +32,28 @@ public class DistritoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Distrito>> getAllDistritos(@RequestParam(required = false, defaultValue = "asc") String sort) {
+    public ResponseEntity<List<DistritoResponseDTO>> getAllDistritos(@RequestParam(required = false, defaultValue = "asc") String sort) {
         Sort.Direction direction = sort.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
 
         var distritos = service.findAllSort(Sort.by(direction, "nombre"));
         return ResponseEntity.ok(distritos);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<DistritoResponseDTO> getDistrito(@PathVariable("id") Integer id) {
+        var response = service.findById(id);
+        return ResponseEntity.ok(response);
+    }
+
     @PostMapping
-    public ResponseEntity<Distrito> createDistrito(@RequestBody Distrito distrito) {
-        var createdDistrito = service.save(distrito);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdDistrito);
+    public ResponseEntity<DistritoResponseDTO> createDistrito(@RequestBody DistritoDTO distritoDTO) {
+        var distritoResponse = service.save(distritoDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(distritoResponse);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Distrito> updateDistrito(@PathVariable("id") Integer id, @RequestBody Distrito distrito) {
-        if (!id.equals(distrito.getDistritoId())) {
-            return ResponseEntity.badRequest().build();
-        }
-        var updatedDistrito = service.save(distrito);
+    public ResponseEntity<DistritoResponseDTO> updateDistrito(@PathVariable("id") Integer distritoId, @RequestBody DistritoDTO distritoDTO) {
+        var updatedDistrito = service.update(distritoId, distritoDTO);
         return ResponseEntity.ok(updatedDistrito);
     }
 

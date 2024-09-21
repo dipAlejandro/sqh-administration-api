@@ -99,16 +99,21 @@ public class Usuario {
         this.creacion = creacion;
     }
 
+    @PrePersist
+    public void prePersist() {
+        this.creacion = LocalDateTime.now();
+    }
+
     @Override
     public String toString() {
-        return "Usuario{" +
-                "usuarioId=" + usuarioId +
-                ", nombreUsuario='" + nombreUsuario + '\'' +
-                ", email='" + email + '\'' +
-                ", contrasenia='" + contrasenia + '\'' +
-                ", profesor=" + profesor +
-                ", rol='" + rol + '\'' +
-                ", creacion=" + creacion +
-                '}';
+        return "Usuario{"
+                + "usuarioId=" + usuarioId
+                + ", nombreUsuario='" + nombreUsuario + '\''
+                + ", email='" + email + '\''
+                + ", contrasenia='" + contrasenia + '\''
+                + ", profesor=" + profesor
+                + ", rol='" + rol + '\''
+                + ", creacion=" + creacion
+                + '}';
     }
 }

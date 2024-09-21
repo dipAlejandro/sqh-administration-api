@@ -22,6 +22,7 @@ public class ProfesorDistrito {
     @MapsId("distritoId")
     @JoinColumn(name = "distrito_id")
     private Distrito distrito;
+
     @Column(nullable = false)
     private LocalDateTime creacion;
 
@@ -65,6 +66,11 @@ public class ProfesorDistrito {
 
     public void setCreacion(LocalDateTime creacion) {
         this.creacion = creacion;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        this.creacion = LocalDateTime.now();
     }
 
     @Override

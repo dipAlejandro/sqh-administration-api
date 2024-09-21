@@ -10,7 +10,7 @@ public class Alumno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "alumno_id", nullable = false)
+    @Column(name = "alumno_id", nullable = true)
     private Integer alumnoId;
 
     @Column(nullable = false)
@@ -34,7 +34,7 @@ public class Alumno {
     @Column(nullable = false)
     private String categoria = "BLANCO";
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_distrito", nullable = false)
     private Distrito distrito;
 
@@ -149,6 +149,11 @@ public class Alumno {
     // Getters y setters...
     public void setCreacion(LocalDateTime creacion) {
         this.creacion = creacion;
+    }
+    
+    @PrePersist
+    public void prePersist() {
+        this.creacion = LocalDateTime.now();
     }
 
     @Override

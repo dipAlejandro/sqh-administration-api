@@ -1,38 +1,22 @@
-package com.shaolinquanhu.admin.api.entity;
+package com.shaolinquanhu.admin.api.dto.response;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
 /**
  *
- * @author Dahl
+ * @author dahl
  */
-@Entity
-@Table(name = "distrito")
-public class Distrito {
+public class DistritoResponseDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "distrito_id", nullable = false)
     private Integer distritoId;
-    @Column(nullable = false)
     private String nombre;
-    @Column(nullable = false)
     private String direccion;
-    @Column(nullable = false)
     private LocalDateTime creacion;
 
-    public Distrito() {
-
+    public DistritoResponseDTO() {
     }
 
-    public Distrito(Integer distritoId, String nombre, String direccion, LocalDateTime creacion) {
+    public DistritoResponseDTO(Integer distritoId, String nombre, String direccion, LocalDateTime creacion) {
         this.distritoId = distritoId;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -71,14 +55,9 @@ public class Distrito {
         this.creacion = creacion;
     }
 
-    @PrePersist
-    public void prePersist() {
-        this.creacion = LocalDateTime.now();
-    }
-
     @Override
     public String toString() {
-        return "Distrito{" + "distritoId=" + distritoId + ", nombre=" + nombre + ", direccion=" + direccion + ", creacion=" + creacion + '}';
+        return "DistritoResponseDTO{" + "distritoId=" + distritoId + ", nombre=" + nombre + ", direccion=" + direccion + ", creacion=" + creacion + '}';
     }
 
 }
