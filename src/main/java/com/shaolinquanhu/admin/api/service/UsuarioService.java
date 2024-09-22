@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,12 +26,14 @@ public class UsuarioService implements IConverter<Usuario, UsuarioDTO, UsuarioRe
     private final IUsuarioRepository uRepository;
     private final IProfesorRepository pRepository;
     private final ValidationService validator;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UsuarioService(IUsuarioRepository uRepo, IProfesorRepository pRepo, ValidationService validator) {
+    public UsuarioService(IUsuarioRepository uRepo, IProfesorRepository pRepo, ValidationService validator, PasswordEncoder passwordEncoder) {
         this.pRepository = pRepo;
         this.uRepository = uRepo;
         this.validator = validator;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -77,6 +80,9 @@ public class UsuarioService implements IConverter<Usuario, UsuarioDTO, UsuarioRe
     public UsuarioResponseDTO save(UsuarioDTO dto) throws IllegalArgumentException {
         validator.validateNotNull(dto, "Usuario no puede ser null.");
         var usuarioToSave = toEntity(dto);
+
+        usuarioToSave.setContrasenia(passwordEncoder.encode(dto.getContrasenia()));
+
         return toResponseDTO(uRepository.save(usuarioToSave));
     }
 
@@ -99,7 +105,7 @@ public class UsuarioService implements IConverter<Usuario, UsuarioDTO, UsuarioRe
 
         existingUsuario.setNombreUsuario(dto.getNombreUsuario());
         existingUsuario.setEmail(dto.getEmail());
-        existingUsuario.setContrasenia(dto.getContrasenia());
+        existingUsuario.setContrasenia(passwordEncoder.encode(dto.getContrasenia()));
         existingUsuario.setRol(dto.getRol());
         existingUsuario.setProfesor(pRepository.findById(dto.getProfesorId()).get());
 

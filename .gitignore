@@ -36,7 +36,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
 /src/main/java/com/shaolinquanhu/admin/api/interceptor/ValidationInterceptor.java
 /src/main/java/com/shaolinquanhu/admin/api/interceptor/
 /src/main/java/com/shaolinquanhu/admin/api/entity/Modificaciones
-/src/main/java/com/shaolinquanhu/admin/api/configuration/
+/src/main/java/com/shaolinquanhu/admin/api/configuration/WebConfig.java

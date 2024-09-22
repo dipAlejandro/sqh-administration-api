@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Usuario
+ * @author Dahl
  */
 @Service
 public class AlumnoService implements IConverter<Alumno, AlumnoDTO, AlumnoResponseDTO> {
